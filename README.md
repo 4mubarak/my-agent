@@ -75,3 +75,4 @@ You can customize exclusions by modifying the `defaultExcludeFiles` array in `to
 ## License
 
 Private project - All rights reserved.
+# my-agent
