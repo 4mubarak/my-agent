@@ -1,7 +1,7 @@
 import { stepCountIs, streamText } from "ai";
 import { google } from "@ai-sdk/google";
 import { SYSTEM_PROMPT } from "./prompts";
-import { getFileChangesInDirectoryTool } from "./tools";
+import { getFileChangesInDirectoryTool, getWeatherTool } from "./tools/index";
 
 const codeReviewAgent = async (prompt: string) => {
   const result = streamText({
@@ -9,7 +9,8 @@ const codeReviewAgent = async (prompt: string) => {
     prompt,
     system: SYSTEM_PROMPT,
     tools: {
-      getFileChangesInDirectoryTool: getFileChangesInDirectoryTool,
+      getFileChangesInDirectoryTool,
+      getWeatherTool,
     },
     stopWhen: stepCountIs(10),
   });
@@ -21,5 +22,5 @@ const codeReviewAgent = async (prompt: string) => {
 
 // Specify which directory the code review agent should review changes in your prompt
 await codeReviewAgent(
-  "Review the code changes in '../my-agent' directory, make your reviews and suggestions file by file",
+  "What is the weather in London?",
 );
